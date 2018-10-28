@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_list/box.dart';
+import 'package:flutter_app_list/water_effect.dart';
 
 class ListPage extends StatefulWidget {
   ListPage({Key key, this.title}) : super(key: key);
@@ -107,19 +109,21 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
         elevation: 4.0,
         icon: const Icon(Icons.local_drink),
         label: const Text('Drink'),
+        backgroundColor: Colors.pinkAccent,
         onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: bottomNavigation,
-      body: new Center(
-        child: new CustomPaint(
-          painter: new GlassPainter(),
-          child: new SizedBox(
-            width: 100.0,
-            height: 150.0,
-          ),
-        ),
-      ),
+      body: new WaterPage(percent: 20.0,),
+//      body: new Center(s
+//        child: new CustomPaint(
+//          painter: new GlassPainter(),
+//          child: new SizedBox(
+//            width: 100.0,
+//            height: 150.0,
+//          ),
+//        ),
+//      ),
     );
   }
 
