@@ -13,6 +13,10 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
+  double percent = .1;
+
+  WaterPage waterPage;
+
   @override
   Widget build(BuildContext context) {
     final topAppBar = AppBar(
@@ -94,6 +98,9 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
         duration: const Duration(seconds: 12),
         vsync: this,
       )..reverse(from: 0.4);
+      waterPage = new WaterPage(
+//        percent: percent,
+      );
     }
 
     @override
@@ -110,11 +117,11 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
         icon: const Icon(Icons.local_drink),
         label: const Text('Drink'),
         backgroundColor: Colors.pinkAccent,
-        onPressed: () {},
+        onPressed: _incrementCounterWater,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: bottomNavigation,
-      body: new WaterPage(percent: 20.0,),
+      body: WaterPage(percent: percent, appbarHeight: topAppBar.preferredSize.height),
 //      body: new Center(s
 //        child: new CustomPaint(
 //          painter: new GlassPainter(),
@@ -127,7 +134,12 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
     );
   }
 
-  void _incrementCounterWater() {}
+  void _incrementCounterWater() {
+    setState(() {
+      percent += .1;
+    });
+  }
+
 }
 
 class GlassPainter extends CustomPainter {
