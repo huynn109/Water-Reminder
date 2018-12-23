@@ -23,7 +23,7 @@ class _WaterPageState extends State<WaterPage> {
   Widget build(BuildContext context) {
     Size size = new Size(
       MediaQuery.of(context).size.width,
-      (MediaQuery.of(context).size.height - 155) * widget.percent,
+      (MediaQuery.of(context).size.height - 175) * widget.percent,
     );
     print('Height ' + size.height.toString());
     print('Height ' + widget.appbarHeight.toString());

@@ -13,7 +13,9 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
-  double percent = .1;
+  double waterSize = 100.0;
+  double allWaterSize = 2000.0;
+  double percent = .0;
 
   WaterPage waterPage;
 
@@ -100,7 +102,7 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
       )..reverse(from: 0.4);
       waterPage = new WaterPage(
 //        percent: percent,
-      );
+          );
     }
 
     @override
@@ -121,7 +123,9 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: bottomNavigation,
-      body: WaterPage(percent: percent, appbarHeight: topAppBar.preferredSize.height),
+      body: WaterPage(
+          percent: waterSize / allWaterSize,
+          appbarHeight: topAppBar.preferredSize.height),
 //      body: new Center(s
 //        child: new CustomPaint(
 //          painter: new GlassPainter(),
@@ -136,10 +140,9 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
 
   void _incrementCounterWater() {
     setState(() {
-      percent += .1;
+      waterSize += 100;
     });
   }
-
 }
 
 class GlassPainter extends CustomPainter {
