@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_list/box.dart';
+import 'package:flutter_app_list/history_page.dart';
 import 'package:flutter_app_list/water_effect.dart';
 
 class ListPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class ListPage extends StatefulWidget {
 
 class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
   double waterSize = 100.0;
-  double allWaterSize = 2000.0;
+  double allWaterSize = 2300.0;
   double percent = .0;
 
   WaterPage waterPage;
@@ -41,9 +42,11 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
               onPressed: () {}),
           IconButton(
               icon: Icon(
-                Icons.settings,
+                Icons.calendar_today,
               ),
-              onPressed: () {})
+              onPressed: () {
+                _gotoHistory();
+              })
         ],
       ),
     );
@@ -75,7 +78,7 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
     final makeCard = Card(
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child: Container(
-        decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
+        decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, 0.9)),
         child: makeListTile,
       ),
     );
@@ -124,7 +127,11 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: bottomNavigation,
       body: WaterPage(
-          percent: waterSize / allWaterSize,
+          weight: waterSize,
+          percent: (waterSize / allWaterSize * 100).roundToDouble(),
+          height: waterSize *
+              (MediaQuery.of(context).size.height - 175) /
+              allWaterSize,
           appbarHeight: topAppBar.preferredSize.height),
 //      body: new Center(s
 //        child: new CustomPaint(
@@ -139,9 +146,15 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
   }
 
   void _incrementCounterWater() {
-    setState(() {
-      waterSize += 100;
-    });
+    if (waterSize < allWaterSize) {
+      setState(() {
+        waterSize += 100;
+      });
+    }
+  }
+
+  void _gotoHistory() {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HistoryPage()));
   }
 }
 

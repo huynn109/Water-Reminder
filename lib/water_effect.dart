@@ -5,6 +5,8 @@ import 'package:vector_math/vector_math.dart' as Vector;
 import 'package:flutter/scheduler.dart' show timeDilation;
 
 class WaterPage extends StatefulWidget {
+  final height;
+  final weight;
   final percent;
   final timeDilation = 3.0;
   final appbarHeight;
@@ -13,6 +15,8 @@ class WaterPage extends StatefulWidget {
   _WaterPageState createState() => new _WaterPageState();
 
   WaterPage({
+    this.weight,
+    this.height,
     this.percent,
     this.appbarHeight,
   });
@@ -23,7 +27,7 @@ class _WaterPageState extends State<WaterPage> {
   Widget build(BuildContext context) {
     Size size = new Size(
       MediaQuery.of(context).size.width,
-      (MediaQuery.of(context).size.height - 175) * widget.percent,
+      widget.height,
     );
     print('Height ' + size.height.toString());
     print('Height ' + widget.appbarHeight.toString());
@@ -35,7 +39,7 @@ class _WaterPageState extends State<WaterPage> {
               size: size, xOffset: 0, yOffset: 0, color: Colors.blue),
           Center(
             child: Text(
-              '${size.height.round().toString() } ml',
+              '${widget.percent} % (${widget.weight.toString()} ml)',
               style: Theme.of(context).textTheme.title,
             ),
           )
@@ -79,7 +83,9 @@ class _WaterEffectState extends State<WaterEffectBody>
     super.initState();
 
     animationController = new AnimationController(
-        vsync: this, duration: new Duration(seconds: 1));
+      vsync: this,
+      duration: new Duration(seconds: 1),
+    );
 
     animationController.addListener(() {
       animList1.clear();
