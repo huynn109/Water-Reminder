@@ -93,23 +93,21 @@ class HistoryPageState extends State<HistoryPage> {
     /// Example with custom icon
     _calendarCarousel = CalendarCarousel<Event>(
       onDayPressed: (DateTime date, List<Event> events) {
-        this.setState(() => _currentDate = date);
+        this.setState(() => _currentDate = DateTime.now());
         events.forEach((event) => print(event.title));
       },
+
       weekendTextStyle: TextStyle(
         color: Colors.red,
       ),
-      thisMonthDayBorderColor: Colors.grey,
-//          weekDays: null, /// for pass null when you do not want to render weekDays
-//          headerText: Container( /// Example for rendering custom header
-//            child: Text('Custom Header'),
-//          ),
-//          markedDates: _markedDate,
       weekFormat: true,
       markedDatesMap: _markedDateMap,
       height: 420.0,
       selectedDateTime: _currentDate,
-//          daysHaveCircularBorder: false, /// null for not rendering any border, true for circular border, false for rectangular border
+      showHeader: false,
+      maxSelectedDate: DateTime.now(),
+
+      /// null for not rendering any border, true for circular border, false for rectangular border
       customGridViewPhysics: NeverScrollableScrollPhysics(),
       markedDateShowIcon: true,
       markedDateIconMaxShown: 2,
@@ -119,16 +117,16 @@ class HistoryPageState extends State<HistoryPage> {
       todayBorderColor: Colors.green,
       markedDateMoreShowTotal:
           true, // null for not showing hidden events indicator
-//          markedDateIconMargin: 9,
-//          markedDateIconOffset: 3,
     );
 
     return Scaffold(
       appBar: AppBar(
         title: Text('History'),
+        elevation: 0.0,
+        leading: CloseButton(),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16.0),
+        color: Colors.white,
         child: CalendarCarousel(
           thisMonthDayBorderColor: Colors.grey,
           height: 420.0,
@@ -137,13 +135,8 @@ class HistoryPageState extends State<HistoryPage> {
 
           /// null for not rendering any border, true for circular border, false for rectangular border
           markedDatesMap: _markedDateMap,
-//          weekendStyle: TextStyle(
-//            color: Colors.red,
-//          ),
-//          weekDays: null, /// for pass null when you do not want to render weekDays
-//          headerText: Container( /// Example for rendering custom header
-//            child: Text('Custom Header'),
-//          ),
+
+          /// for pass null when you do not want to render weekDays
         ),
       ),
     );
