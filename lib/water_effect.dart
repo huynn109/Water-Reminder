@@ -33,24 +33,17 @@ class _WaterPageState extends State<WaterPage> {
     print('Height ' + widget.appbarHeight.toString());
     print('Height ' + MediaQuery.of(context).size.height.toString());
     return new Scaffold(
+      backgroundColor: Colors.white,
       body: new Stack(
         children: <Widget>[
           new WaterEffectBody(
-              size: size, xOffset: 0, yOffset: 0, color: Colors.blue),
+              size: size, xOffset: 0, yOffset: 0, color: Colors.indigo),
           Center(
             child: Text(
               '${widget.percent} % (${widget.weight.toString()} ml)',
               style: Theme.of(context).textTheme.title,
             ),
           )
-//          new Opacity(
-//            opacity: 0.9,
-//            child: new WaterEffectBody(
-//              size: size,
-//              xOffset: 100,
-//              yOffset: 10,
-//            ),
-//          ),
         ],
       ),
     );

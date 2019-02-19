@@ -102,7 +102,7 @@ class HistoryPageState extends State<HistoryPage> {
       ),
       weekFormat: true,
       markedDatesMap: _markedDateMap,
-      height: 420.0,
+      height: 480.0,
       selectedDateTime: _currentDate,
       showHeader: false,
       maxSelectedDate: DateTime.now(),
@@ -122,14 +122,13 @@ class HistoryPageState extends State<HistoryPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('History'),
-        elevation: 0.0,
         leading: CloseButton(),
       ),
       body: Container(
         color: Colors.white,
         child: CalendarCarousel(
           thisMonthDayBorderColor: Colors.grey,
-          height: 420.0,
+          height: 480.0,
           selectedDateTime: _currentDate,
           daysHaveCircularBorder: false,
 

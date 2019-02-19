@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_list/account_page.dart';
 import 'package:flutter_app_list/box.dart';
 import 'package:flutter_app_list/history_page.dart';
 import 'package:flutter_app_list/water_effect.dart';
@@ -23,7 +24,7 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final topAppBar = AppBar(
-      elevation: 0.0,
+      elevation: 0.toDouble(),
       title: Text('Water Reminder'),
       centerTitle: true,
       backgroundColor: Colors.white,
@@ -37,16 +38,18 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
         children: <Widget>[
           IconButton(
               icon: Icon(
-                Icons.account_circle,
-              ),
-              onPressed: () {}),
-          IconButton(
-              icon: Icon(
                 Icons.calendar_today,
               ),
               onPressed: () {
                 _gotoHistory();
-              })
+              }),
+          IconButton(
+              icon: Icon(
+                Icons.account_circle,
+              ),
+              onPressed: () {
+                _gotoAccount();
+              }),
         ],
       ),
     );
@@ -115,7 +118,6 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: topAppBar,
       floatingActionButton: FloatingActionButton.extended(
         elevation: 4.0,
@@ -133,15 +135,6 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
               (MediaQuery.of(context).size.height - 175) /
               allWaterSize,
           appbarHeight: topAppBar.preferredSize.height),
-//      body: new Center(s
-//        child: new CustomPaint(
-//          painter: new GlassPainter(),
-//          child: new SizedBox(
-//            width: 100.0,
-//            height: 150.0,
-//          ),
-//        ),
-//      ),
     );
   }
 
@@ -154,7 +147,13 @@ class _ListPageState extends State<ListPage> with TickerProviderStateMixin {
   }
 
   void _gotoHistory() {
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HistoryPage()));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext context) => HistoryPage()));
+  }
+
+  void _gotoAccount() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext context) => AccountPage()));
   }
 }
 
