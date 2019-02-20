@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_list/list_page.dart';
+import 'package:flutter_app_list/water_page.dart';
 
 void main() => runApp(new MyApp());
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primaryColor: Colors.white,
       ),
-      home: new ListPage(title: 'Flutter Demo List Page'),
+      home: new WaterPage(),
     );
   }
 }

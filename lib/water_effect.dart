@@ -115,14 +115,7 @@ class _WaterEffectState extends State<WaterEffectBody>
           curve: Curves.easeInOut,
         ),
         builder: (context, child) => new ClipPath(
-              child: widget.color == null
-                  ? Image.asset(
-                      'images/demo5bg.jpg',
-                      width: widget.size.width,
-                      height: widget.size.height,
-                      fit: BoxFit.cover,
-                    )
-                  : new Container(
+              child: new Container(
                       width: widget.size.width,
                       height: widget.size.height,
                       color: widget.color,
