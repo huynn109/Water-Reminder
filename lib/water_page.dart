@@ -58,45 +58,45 @@ class WaterPageState extends State<WaterPage> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: bottomNavigation,
         body: Container(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              ListTile(
-                title: Text('Hello Huy Nguyen'),
-                subtitle: Text('${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}'),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  Center(
-                    child: new CircularPercentIndicator(
-                      radius: 200.0,
-                      lineWidth: 13.0,
-                      animation: false,
-                      percent: percent <= 1.0 ? percent : 1.0,
-                      center: new Text(
-                        '${(percent * 100).roundToDouble()} %',
-                        style:
-                        new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-                      ),
-                      footer: new Text(
-                        '$waterSize / $allWaterSize ml',
-                        style:
-                        new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
-                      ),
-                      circularStrokeCap: CircularStrokeCap.round,
-                      progressColor: Colors.purple,
-                    ),
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'Welcome Huy Nguyen',
+                    style: Theme.of(context).textTheme.headline,
                   ),
-                ],
-              )
-            ],
-          )
-        ));
+                  subtitle: Text(
+                      '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}'),
+                ),
+                Flexible(
+                    child: FractionallySizedBox(
+                  heightFactor: 0.9,
+                  widthFactor: 1.0,
+                  alignment: Alignment.topCenter,
+                  child: new CircularPercentIndicator(
+                    radius: 200.0,
+                    lineWidth: 13.0,
+                    animation: false,
+                    percent: percent <= 1.0 ? percent : 1.0,
+                    center: new Text(
+                      '${(percent * 100).roundToDouble()} %',
+                      style: new TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20.0),
+                    ),
+                    footer: new Text(
+                      '$waterSize / $allWaterSize ml',
+                      style: new TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 17.0),
+                    ),
+                    circularStrokeCap: CircularStrokeCap.round,
+                    progressColor: Colors.purple,
+                  ),
+                ))
+              ],
+            )));
   }
 
   void _incrementCounterWater() {
