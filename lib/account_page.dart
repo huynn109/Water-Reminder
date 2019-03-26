@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_list/profile_page.dart';
 
 class AccountPage extends StatefulWidget {
   @override
@@ -12,7 +13,6 @@ class AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: CloseButton(),
         elevation: 0.toDouble(),
         title: Text('Account'),
         backgroundColor: Colors.white,
@@ -24,45 +24,100 @@ class AccountPageState extends State<AccountPage> {
     );
   }
 
-  Widget _buildCard() =>
-      SizedBox(
-        height: 210,
-        child: Card(
-          elevation: 4.0,
-          color: Colors.indigo,
-          child: Column(
-            children: [
-              ListTile(
-                title: Text('1625 Main Street',
-                    style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white)),
-                subtitle: Text(
-                  'My City, CA 99984', style: TextStyle(color: Colors.white),),
-                leading: Icon(
-                  Icons.restaurant_menu,
-                  color: Colors.white,
-                ),
-              ),
-              Divider(color: Colors.white10,),
-              ListTile(
-                title: Text('(408) 555-1212',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500, color: Colors.white),),
-                leading: Icon(
-                  Icons.contact_phone,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: Text(
-                    'costa@example.com', style: TextStyle(color: Colors.white),
-                    ),
-                leading: Icon(
-                  Icons.contact_mail,
-                  color: Colors.white,
-                ),
-              ),
-            ],
+  Widget _buildCard() => Column(
+        children: [
+          ListTile(
+            title:
+                Text('Profile', style: TextStyle(fontWeight: FontWeight.w500)),
+            leading: Icon(
+              Icons.person,
+            ),
+            trailing: Icon(Icons.navigate_next),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => ProfilePage()));
+            },
           ),
-        ),
+          Divider(),
+          ListTile(
+            title: Text(
+              'Notifications',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            leading: Icon(
+              Icons.notifications,
+            ),
+            trailing: Icon(Icons.navigate_next),
+            onTap: () {
+              print("Hello");
+            },
+          ),
+          ListTile(
+            title: Text(
+              'Drinks info',
+            ),
+            leading: Icon(
+              Icons.info,
+            ),
+            trailing: Icon(Icons.navigate_next),
+            onTap: () {
+              print("Hello");
+            },
+          ),
+          ListTile(
+            title: Text(
+              'Default Volumes',
+            ),
+            leading: Icon(
+              Icons.free_breakfast,
+            ),
+            trailing: Icon(Icons.navigate_next),
+            onTap: () {
+              print("Hello");
+            },
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              'Send feedback',
+            ),
+            leading: Icon(
+              Icons.feedback,
+            ),
+            trailing: Icon(Icons.navigate_next),
+            onTap: () {
+              print("Hello");
+            },
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              'Share with friends',
+            ),
+            leading: Icon(
+              Icons.share,
+            ),
+            trailing: Icon(Icons.navigate_next),
+            onTap: () {
+              print("Hello");
+            },
+          ),
+          ListTile(
+            title: Text(
+              'Rate us',
+            ),
+            leading: Icon(
+              Icons.star,
+            ),
+            trailing: Icon(Icons.navigate_next),
+            onTap: () {
+              print("Hello");
+            },
+          ),
+        ],
       );
 }

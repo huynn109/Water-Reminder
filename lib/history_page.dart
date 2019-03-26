@@ -123,6 +123,7 @@ class HistoryPageState extends State<HistoryPage> {
       appBar: AppBar(
         title: Text('History'),
         leading: CloseButton(),
+        elevation: 0.toDouble(),
       ),
       body: Container(
         color: Colors.white,
