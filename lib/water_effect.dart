@@ -29,9 +29,6 @@ class _WaterPageState extends State<WaterPage> {
       MediaQuery.of(context).size.width,
       widget.height,
     );
-    print('Height ' + size.height.toString());
-    print('Height ' + widget.appbarHeight.toString());
-    print('Height ' + MediaQuery.of(context).size.height.toString());
     return new Scaffold(
       backgroundColor: Colors.white,
       body: new Stack(
