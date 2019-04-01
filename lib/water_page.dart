@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_list/account_page.dart';
 import 'package:flutter_app_list/history_page.dart';
+import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class WaterPage extends StatefulWidget {
@@ -47,56 +48,62 @@ class WaterPageState extends State<WaterPage> {
       ),
     );
     return Scaffold(
-        appBar: topAppBar,
+        backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton.extended(
-          elevation: 4.0,
           icon: const Icon(Icons.local_drink),
           label: const Text('Drink'),
-          backgroundColor: Colors.pinkAccent,
+          backgroundColor: Colors.indigo,
           onPressed: _incrementCounterWater,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: bottomNavigation,
-        body: Container(
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                ListTile(
-                  title: Text(
-                    'Welcome Huy Nguyen',
-                    style: Theme.of(context).textTheme.headline,
-                  ),
-                  subtitle: Text(
-                      '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}'),
-                ),
-                Flexible(
-                    child: FractionallySizedBox(
-                  heightFactor: 0.9,
-                  widthFactor: 1.0,
-                  alignment: Alignment.topCenter,
-                  child: new CircularPercentIndicator(
-                    radius: 200.0,
-                    lineWidth: 13.0,
-                    animation: false,
-                    percent: percent <= 1.0 ? percent : 1.0,
-                    center: new Text(
-                      '${(percent * 100).roundToDouble()} %',
-                      style: new TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20.0),
+        body: SafeArea(
+            child: Container(
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 8.0,
                     ),
-                    footer: new Text(
-                      '$waterSize / $allWaterSize ml',
-                      style: new TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 17.0),
+                    ListTile(
+                      title: Text(
+                        'Welcome Huy Nguyen',
+                        style: Theme.of(context).textTheme.headline,
+                        textAlign: TextAlign.center,
+                      ),
+                      subtitle: Text(
+                        '${DateFormat.yMMMd().format(new DateTime.now())}',
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    circularStrokeCap: CircularStrokeCap.round,
-                    progressColor: Colors.purple,
-                  ),
-                ))
-              ],
-            )));
+                    Flexible(
+                        child: FractionallySizedBox(
+                      heightFactor: 0.9,
+                      widthFactor: 1.0,
+                      alignment: Alignment.topCenter,
+                      child: new CircularPercentIndicator(
+                        radius: 200.0,
+                        lineWidth: 13.0,
+                        animation: false,
+                        percent: percent <= 1.0 ? percent : 1.0,
+                        center: new Text(
+                          '${(percent * 100).roundToDouble()} %',
+                          style: new TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20.0),
+                        ),
+                        footer: new Text(
+                          '$waterSize / $allWaterSize ml',
+                          style: new TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 17.0),
+                        ),
+                        circularStrokeCap: CircularStrokeCap.round,
+                        progressColor: Colors.indigo,
+                      ),
+                    ))
+                  ],
+                ))));
   }
 
   void _incrementCounterWater() {

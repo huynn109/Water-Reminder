@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_list/notification_page.dart';
 import 'package:flutter_app_list/profile_page.dart';
 
 class AccountPage extends StatefulWidget {
@@ -53,8 +54,10 @@ class AccountPageState extends State<AccountPage> {
             ),
             trailing: Icon(Icons.navigate_next),
             onTap: () {
-              print("Hello");
-            },
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => NotificationPage()));            },
           ),
           ListTile(
             title: Text(

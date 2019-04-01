@@ -15,6 +15,9 @@ class ProfilePageState extends State<ProfilePage> {
   };
   String _selectedMaterial = '';
 
+  String weightSelected;
+  String goalSelected;
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> choiceChips = _gender.map<Widget>((String name) {
@@ -31,6 +34,9 @@ class ProfilePageState extends State<ProfilePage> {
       );
     }).toList();
 
+    final List<Widget> weights = List.generate(100, (i) => Text('$i kg'));
+    final List<Widget> goals = List.generate(100, (i) => Text('${i * 100} ml'));
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.toDouble(),
@@ -39,24 +45,25 @@ class ProfilePageState extends State<ProfilePage> {
       ),
       body: Container(
         color: Colors.white,
-        child: _buildProfilePage(choiceChips),
+        child: _buildProfilePage(weights, goals),
       ),
     );
   }
 
-  _buildProfilePage(List<Widget> choiceChips) {
+  _buildProfilePage(List<Widget> weights, List<Widget> goals) {
     return Container(
       child: ListView(
         children: <Widget>[
           ListTile(
             title: Text('Unit of mesure'),
-            trailing:  Row(
+            trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 OutlineButton(
                   onPressed: () {},
                   child: Text("kg | ml"),
                 ),
+                SizedBox(width: 4.0,),
                 OutlineButton(
                   onPressed: () {},
                   child: Text("lb | oz"),
@@ -66,13 +73,14 @@ class ProfilePageState extends State<ProfilePage> {
           ),
           ListTile(
             title: Text('Gender'),
-            trailing:  Row(
+            trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 OutlineButton(
                   onPressed: () {},
                   child: Text("Male"),
                 ),
+                SizedBox(width: 4.0,),
                 OutlineButton(
                   onPressed: () {},
                   child: Text("Female"),
@@ -82,11 +90,59 @@ class ProfilePageState extends State<ProfilePage> {
           ),
           ListTile(
             title: Text('Weight'),
-            trailing: Text('57 kg'),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text('${weightSelected ?? ''} kg'),
+                Icon(Icons.navigate_next)
+              ],
+            ),
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext builder) {
+                    return Container(
+                        height:
+                            MediaQuery.of(context).copyWith().size.height / 5,
+                        child: CupertinoPicker(
+                          onSelectedItemChanged: (int value) {
+                            setState(() {
+                              weightSelected = '$value';
+                            });
+                          },
+                          itemExtent: 40.0,
+                          children: weights,
+                        ));
+                  });
+            },
           ),
           ListTile(
             title: Text('Goal'),
-            trailing: Text('1900 ml'),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text('${goalSelected ?? ''} ml'),
+                Icon(Icons.navigate_next),
+              ],
+            ),
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext builder) {
+                    return Container(
+                        height:
+                            MediaQuery.of(context).copyWith().size.height / 5,
+                        child: CupertinoPicker(
+                          onSelectedItemChanged: (int value) {
+                            setState(() {
+                              goalSelected = '$value';
+                            });
+                          },
+                          itemExtent: 40.0,
+                          children: goals,
+                        ));
+                  });
+            },
           ),
         ],
       ),
